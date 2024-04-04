@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Kaboom Game</title>
+    <script src="https://unpkg.com/kaboom"></script>
+</head>
+<body>
+    <script>
+        // Initialize kaboom
+        kaboom();
+
+        // Define the player
+        const player = add([
+            sprite("player"), // use the "player" sprite
+            pos(80, 80), // start at position (80, 80)
+            body(), // use default physics
+        ]);
+
+        // Define the movement keys
+        keyDown("left", () => {
+            player.move(-120, 0);
+        });
+
+        keyDown("right", () => {
+            player.move(120, 0);
+        });
+
+        keyDown("up", () => {
+            if (player.grounded()) {
+                player.jump(320);
+            }
+        });
+    </script>
+</body>
+</html>
