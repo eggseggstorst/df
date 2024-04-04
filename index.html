@@ -1,3 +1,5 @@
+ 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,10 @@
         // Initialize kaboom
         kaboom();
 
+        // Load the player and goal sprites
+        loadSprite("player", "/path/to/player.png");
+        loadSprite("goal", "/path/to/goal.png");
+
         // Define the player
         const player = add([
             sprite("player"), // use the "player" sprite
@@ -16,20 +22,18 @@
             body(), // use default physics
         ]);
 
-        // Define the movement keys
-        keyDown("left", () => {
-            player.move(-120, 0);
-        });
+        // Define the goal
+        const goal = add([
+            sprite("goal"), // use the "goal" sprite
+            pos(500, 100), // position the goal at (500, 100)
+        ]);
 
-        keyDown("right", () => {
-            player.move(120, 0);
-        });
+        // Define the platforms
+        const platforms = [
+            { x: 80, y: 200 },
+            { x: 200, y: 300 },
+            { x: 400, y: 400 },
+        ];
 
-        keyDown("up", () => {
-            if (player.grounded()) {
-                player.jump(320);
-            }
-        });
-    </script>
-</body>
-</html>
+        // Add the platforms to the game
+        platforms.forEach((platform
